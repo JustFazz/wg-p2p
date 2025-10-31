@@ -7,21 +7,7 @@ import sys
 SERVER = "http://8.215.53.178:8443"
 WG_PORT = 51820
 
-# --- [ Fungsi agar bisa memanggil file dari dalam bundle ] ---
-def resource_path(relative_path):
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
-
-TOOLS_DIR = resource_path("tools")
-
-def find_tool(name):
-    local_path = os.path.join(TOOLS_DIR, name)
-    if os.path.exists(local_path):
-        return local_path
-    return name
-
-WG_EXE = find_tool("wg")
+WG_EXE = "C:/Program Files/Wireguard/wg"
 
 def gen_keys():
     private = subprocess.check_output([WG_EXE, "genkey"]).decode().strip()
