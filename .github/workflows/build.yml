@@ -51,7 +51,7 @@ jobs:
 
       - name: Build Windows binary
         run: |
-          pyinstaller --onefile --add-binary "tools/windows/wg.exe;tools/windows" main-win.py 
+          pyinstaller --onefile --add-data "tools/windows/wg.exe;tools/windows" main-win.py 
       - name: Upload Windows binary
         uses: actions/upload-artifact@v4
         with:
