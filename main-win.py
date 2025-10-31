@@ -21,7 +21,7 @@ def find_tool(name):
         return local_path
     return name
 
-WG_EXE = find_tool("wg.exe")
+WG_EXE = find_tool("wg")
 
 def gen_keys():
     private = subprocess.check_output([WG_EXE, "genkey"]).decode().strip()
