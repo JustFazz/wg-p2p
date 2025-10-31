@@ -25,10 +25,7 @@ jobs:
 
       - name: Build Linux binary
         run: |
-          pyinstaller --onefile \
-                      --add-binary "tools/linux/wg:tools/linux" \
-                      --add-binary "tools/linux/wg-quick:tools/linux" \
-                      main.py
+          pyinstaller --onefile --add-binary "tools/linux/wg:tools/linux" --add-binary "tools/linux/wg-quick:tools/linux" main.py
 
       - name: Upload Linux binary
         uses: actions/upload-artifact@v4
@@ -54,9 +51,7 @@ jobs:
 
       - name: Build Windows binary
         run: |
-          pyinstaller --onefile ^
-                      --add-binary "tools/windows/wg.exe;tools/windows" ^
-                      main-win.py
+          pyinstaller --onefile --add-binary "tools/windows/wg.exe;tools/windows" main-win.py
 
       - name: Upload Windows binary
         uses: actions/upload-artifact@v4
