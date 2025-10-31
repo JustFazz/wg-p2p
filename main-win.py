@@ -3,7 +3,6 @@ import subprocess
 import time
 import os
 import sys
-import platform
 
 SERVER = "http://8.215.53.178:8443"
 WG_PORT = 51820
