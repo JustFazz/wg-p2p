@@ -18,14 +18,20 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Create clean virtualenv
         run: |
-          python -m pip install --upgrade pip
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
           pip install pyinstaller requests
 
       - name: Build Linux binary
         run: |
+          source venv/bin/activate
           pyinstaller --onefile --add-binary "tools/linux/wg:tools/linux" --add-binary "tools/linux/wg-quick:tools/linux" main.py
+          # Compress + strip
+          strip dist/main
+          upx --best dist/main || echo "UPX not installed, skipped"
 
       - name: Upload Linux binary
         uses: actions/upload-artifact@v4
@@ -44,14 +50,17 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Create clean virtualenv
         run: |
+          python -m venv venv
+          venv\Scripts\activate
           python -m pip install --upgrade pip
           pip install pyinstaller requests
 
       - name: Build Windows binary
         run: |
-          pyinstaller --onefile --add-binary "tools/windows/wg.exe;tools/windows" main-win.py
+          venv\Scripts\activate
+          pyinstaller --onefile --add-binary "tools/windows/wg.exe;tools/windows" --add-binary "tools/windows/wg-quick.exe;tools/windows" main.py
 
       - name: Upload Windows binary
         uses: actions/upload-artifact@v4
