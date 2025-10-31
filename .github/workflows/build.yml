@@ -31,7 +31,7 @@ jobs:
                       main.py
 
       - name: Upload Linux binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-binary
           path: dist/main
@@ -59,7 +59,7 @@ jobs:
                       main-win.py
 
       - name: Upload Windows binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-binary
           path: dist/main.exe
